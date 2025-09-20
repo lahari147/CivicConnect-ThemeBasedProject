@@ -1,0 +1,159 @@
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #f8f9fa, #e9ecef);
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 95%;
+        margin: 30px auto;
+        background: #ffffff;
+        padding: 30px 20px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #ff4500;
+        font-size: 28px;
+        margin-bottom: 25px;
+    }
+
+    .logout-btn {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover {
+        background-color: #0056b3;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        overflow-x: auto;
+        border-radius: 10px;
+    }
+
+    th, td {
+        padding: 14px 12px;
+        text-align: center;
+        border: 1px solid #dee2e6;
+    }
+
+    th {
+        background-color: #343a40;
+        color: #ffffff;
+        font-size: 16px;
+        text-transform: uppercase;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+
+    tr:hover {
+        background-color: #e2e6ea;
+        transition: 0.2s;
+    }
+
+    img {
+        width: 60px;
+        height: auto;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .priority-high {
+        color: red;
+        font-weight: bold;
+    }
+
+    .priority-medium {
+        color: orange;
+        font-weight: bold;
+    }
+
+    .priority-low {
+        color: green;
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        table {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .container {
+            padding: 20px 10px;
+        }
+        h2 {
+            font-size: 22px;
+        }
+    }
+</style>
+
+{% block content %}
+<div class="container">
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+        <a href="{% url 'authority_dashboard' %}" class="logout-btn">← Back to Dashboard</a>
+    </div>
+    <h2>🔥 Top 10 Trending Civic Issues</h2>
+
+    {% if trending_issues %}
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Times Reported</th>
+                <th>Severity</th>
+                <th>Priority</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for issue in trending_issues %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ issue.description|truncatechars:60 }}</td>
+                <td>{{ issue.location_name }}</td>
+                <td>{{ issue.report_count }}</td>
+                <td>{{ issue.severity }}</td>
+                <td class="{% if issue.priority == 3 %}priority-high{% elif issue.priority == 2 %}priority-medium{% else %}priority-low{% endif %}">
+                    {% if issue.priority == 3 %}
+                        High
+                    {% elif issue.priority == 2 %}
+                        Medium
+                    {% else %}
+                        Low
+                    {% endif %}
+                </td>
+                <td>
+                    {% if issue.image %}
+                        <img src="{{ issue.image.url }}" alt="Issue Image" style="width: 60px;">
+                    {% else %}
+                        No Image
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No trending issues found.</p>
+    {% endif %}
+</div>
+{% endblock %}

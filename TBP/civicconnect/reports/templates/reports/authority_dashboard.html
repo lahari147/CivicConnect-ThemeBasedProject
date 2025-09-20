@@ -1,0 +1,267 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authority Dashboard</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 95%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+            text-align: center;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .filter-box {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .filter-box input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .prioritize-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .prioritize-btn {
+            background: linear-gradient(135deg, #28a745, #218838);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+        }
+
+        .prioritize-btn:hover {
+            background: linear-gradient(135deg, #218838, #1e7e34);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .prioritize-btn::before {
+            content: "🚀";
+            font-size: 20px;
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            table-layout: fixed;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+            word-wrap: break-word;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        img {
+            width: 60px;
+            height: auto;
+            border-radius: 5px;
+            display: block;
+            margin: 0 auto;
+        }
+        .priority-high { color: red; font-weight: bold; }
+        .priority-medium { color: orange; font-weight: bold; }
+        .priority-low { color: green; font-weight: bold; }
+
+        .progress-bar {
+            width: 100px;
+            height: 15px;
+            background-color: #ddd;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            margin: auto;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #28a745, #218838);
+            border-radius: 5px;
+            transition: width 0.5s ease-in-out;
+        }
+
+        @media (max-width: 768px) {
+            .filter-box {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .filter-box input {
+                width: 100%;
+            }
+            table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            .prioritize-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        .logout-btn {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+    </div>
+    <h2>🚨 Authority Dashboard - Prioritized Issues</h2>
+
+    <div class="prioritize-container">
+        <a href="{% url 'prioritized_issues' %}" class="prioritize-btn">AI Prioritize Issues</a>
+        <a href="{% url 'trending_issues' %}" class="prioritize-btn" style="background: linear-gradient(135deg, #ff8c00, #ff5e00);">
+            🔥 Trending Issues
+        </a>
+    </div>
+
+    <div class="filter-box">
+        <input type="text" id="searchUser" placeholder="🔍 Search by User Name...">
+        <input type="text" id="searchLocation" placeholder="📍 Search by Location...">
+    </div>
+
+    <div class="table-container">
+        {% if reported_issues %}
+        <table id="issuesTable">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Email</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Times Reported</th>
+                    <th>Severity</th>
+                    <th>Image</th>
+                    <th>Verify Work</th>
+                    <th>Completion Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for issue in reported_issues %}
+                <tr>
+                    <td>{{ issue.user.username }}</td>
+                    <td>{{ issue.user.email }}</td>
+                    <td>{{ issue.description }}</td>
+                    <td>{{ issue.location_name }}</td>
+                    <td>{{ issue.latitude }}</td>
+                    <td>{{ issue.longitude }}</td>
+                    <td>{{ issue.report_count }}</td>
+                    <td>{{ issue.severity }}</td>
+                    <td>
+                        {% if issue.image %}
+                            <img src="{{ issue.image.url }}" alt="Issue Image">
+                        {% else %}
+                            No Image
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if issue.work_images %}
+                            <img src="{{ issue.work_images.url }}" alt="Work Image">
+                        {% else %}
+                            No Image
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: {{ issue.progress_percentage }}%;"></div>
+                        </div>
+                        {{ issue.progress_percentage }}%
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p>No issues reported yet.</p>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    document.getElementById("searchUser").addEventListener("keyup", function() {
+        filterTable(0, this.value);
+    });
+
+    document.getElementById("searchLocation").addEventListener("keyup", function() {
+        filterTable(3, this.value);
+    });
+
+    function filterTable(columnIndex, filterValue) {
+        let table = document.getElementById("issuesTable");
+        let rows = table.getElementsByTagName("tr");
+        
+        for (let i = 1; i < rows.length; i++) {
+            let cell = rows[i].getElementsByTagName("td")[columnIndex];
+            if (cell) {
+                let text = cell.textContent || cell.innerText;
+                rows[i].style.display = text.toLowerCase().includes(filterValue.toLowerCase()) ? "" : "none";
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

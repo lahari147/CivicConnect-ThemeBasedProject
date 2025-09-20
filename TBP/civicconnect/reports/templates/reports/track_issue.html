@@ -1,0 +1,32 @@
+<h2>Track Your Issue</h2>
+<form id="trackIssueForm">
+    <input type="number" id="report_id" name="report_id" placeholder="Enter Report ID" required>
+    <button type="submit">Track Issue</button>
+</form>
+
+<div id="issueDetails" style="display: none;">
+    <h3>Issue Details</h3>
+    <p><strong>Title:</strong> <span id="issueTitle"></span></p>
+    <p><strong>Status:</strong> <span id="issueStatus"></span></p>
+    <p><strong>Reported On:</strong> <span id="issueDate"></span></p>
+</div>
+
+<script>
+document.getElementById("trackIssueForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    let reportID = document.getElementById("report_id").value.trim();
+    
+    fetch(`/get_issue_status/${reportID}/`)  
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert("❌ Report not found! Please check the Report ID.");
+        } else {
+            document.getElementById("issueTitle").innerText = data.title;
+            document.getElementById("issueStatus").innerText = data.status;
+            document.getElementById("issueDate").innerText = data.date;
+            document.getElementById("issueDetails").style.display = "block";
+        }
+    });
+});
+</script>

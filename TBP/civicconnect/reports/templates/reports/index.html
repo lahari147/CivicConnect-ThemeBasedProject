@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicConnect - Issue Reporting</title>
+    
+    <!-- ✅ Latest Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- ✅ Load Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    {% load static %}
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; background-color: #f4f4f4; }
+        .container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        input, button, textarea { width: 100%; margin-top: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        button { background: blue; color: white; cursor: pointer; }
+        #map { height: 300px; border-radius: 10px; margin-top: 10px; }
+        img { max-width: 100%; margin-top: 10px; border-radius: 5px; }
+        #locationDisplay { margin-top: 10px; font-weight: bold; }
+        .dropdown { position: relative; }
+        .dropdown-content { 
+            display: none; 
+            position: absolute; 
+            background: white; 
+            width: 100%; 
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+            max-height: 150px; 
+            overflow-y: auto; 
+            z-index: 1000;
+        }
+        .dropdown-content div { padding: 10px; cursor: pointer; }
+        .dropdown-content div:hover { background: #f1f1f1; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Report an Issue</h2>
+
+        <form id="issueForm" method="POST" enctype="multipart/form-data">
+            {% csrf_token %} 
+
+            <label for="imageInput">Upload an Image:</label>
+            <input type="file" id="imageInput" name="image" accept="image/*">
+            <img id="preview" style="display: none;">
+
+            <div class="dropdown">
+                <label for="issueDescription">Describe the Issue:</label>
+                <input type="text" id="issueDescription" name="description" placeholder="Enter issue details..." oninput="filterIssues()">
+                <div id="issueList" class="dropdown-content"></div>
+            </div>
+            
+
+            <label for="locationSearch">Search for Location:</label>
+            <input type="text" id="locationSearch" name="location_name" placeholder="Enter area name...">
+            
+            <h3>Select from Map:</h3>
+            <div id="map"></div>
+            <div id="locationDisplay">Latitude: N/A, Longitude: N/A</div>
+
+            <h3>Use Live Location:</h3>
+            <button type="button" onclick="getLiveLocation()">Get Live Location</button>
+
+            <input type="hidden" id="latitude" name="latitude">
+            <input type="hidden" id="longitude" name="longitude">
+
+            <button type="submit">Submit Issue</button>
+        </form>
+    </div>
+
+    <script>
+        let issueLat = null, issueLon = null;
+        const locationDisplay = document.getElementById("locationDisplay");
+        const locationSearch = document.getElementById("locationSearch");
+        const issueInput = document.getElementById("issueDescription");
+        const issueList = document.getElementById("issueList");
+        const imageInput = document.getElementById("imageInput");
+        const preview = document.getElementById("preview");
+
+        // ✅ Image Preview Function
+        imageInput.addEventListener("change", function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = "none";
+            }
+        });
+
+        // ✅ Common Issues List
+        const commonIssues = [
+        "Potholes", "Broken Streetlights", "Water Leakage", "Fallen Tree",
+        "Power Outage", "Illegal Garbage Dumping", "Fire Hazards", "Blocked Drainage",
+        "Sewage Overflow", "Road Damage", "Traffic Signal Malfunction", "Illegal Parking",
+        "Construction Debris", "Open Manholes", "Stray Animals", "Noise Pollution",
+        "Vandalism", "Uncollected Waste", "Public Toilet Issues", "Street Flooding"
+    ];
+
+    function filterIssues() {
+        const query = issueInput.value.toLowerCase().trim();
+        issueList.innerHTML = "";
+
+        if (query === "") {
+            issueList.style.display = "none";
+            return;
+        }
+
+        const filteredIssues = commonIssues.filter(issue => issue.toLowerCase().includes(query));
+
+        if (filteredIssues.length > 0) {
+            issueList.style.display = "block";
+            filteredIssues.forEach(issue => {
+                const item = document.createElement("div");
+                item.textContent = issue;
+                item.onclick = () => selectIssue(issue);
+                issueList.appendChild(item);
+            });
+        } else {
+            issueList.style.display = "none";
+        }
+    }
+
+    function selectIssue(issue) {
+        issueInput.value = issue;
+        issueList.style.display = "none";
+    }
+
+    // ✅ Close dropdown when clicking outside
+    document.addEventListener("click", function(event) {
+        if (!event.target.closest(".dropdown")) {
+            issueList.style.display = "none";
+        }
+    });
+        // ✅ Initialize Map
+        const map = L.map('map').setView([20, 78], 5);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+            attribution: '© OpenStreetMap contributors' 
+        }).addTo(map);
+
+        let marker = L.marker([20, 78], { draggable: true }).addTo(map);
+
+        // ✅ Update marker on map click
+        map.on('click', function(e) {
+            setMarker(e.latlng.lat, e.latlng.lng, true);
+        });
+
+        marker.on('dragend', function(e) {
+            setMarker(e.target.getLatLng().lat, e.target.getLatLng().lng, true);
+        });
+
+        function getLiveLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        setMarker(position.coords.latitude, position.coords.longitude, true);
+                    },
+                    (error) => {
+                        alert("Geolocation error: " + error.message);
+                    },
+                    { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+                );
+            } else {
+                alert("Geolocation is not supported.");
+            }
+        }
+
+        function setMarker(lat, lon, fetchAddress = false) {
+            console.log("Setting marker at:", lat, lon);
+            issueLat = lat;
+            issueLon = lon;
+            marker.setLatLng([lat, lon]);
+            map.setView([lat, lon], 15);
+            locationDisplay.textContent = `Latitude: ${lat.toFixed(6)}, Longitude: ${lon.toFixed(6)}`;
+            document.getElementById("latitude").value = lat;
+            document.getElementById("longitude").value = lon;
+
+            if (fetchAddress) {
+                fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        locationSearch.value = data.display_name || `Lat: ${lat}, Lon: ${lon}`;
+                    })
+                    .catch(error => console.error("Error fetching address:", error));
+            }
+        }
+
+        document.getElementById("imageInput").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById("preview").src = e.target.result;
+                    document.getElementById("preview").style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // ✅ Fixed: Show Alert Only After Issue is Submitted
+        document.getElementById("issueForm").addEventListener("submit", function(event) {
+            event.preventDefault();  
+
+            const formData = new FormData(this);
+            formData.append("latitude", issueLat);
+            formData.append("longitude", issueLon);
+
+            fetch("{% url 'report_issue' %}", { 
+ 
+                method: "POST",
+                body: formData,
+                headers: { "X-CSRFToken": getCSRFToken() },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert("✅ " + data.message);  // ✅ Show success alert after submission
+                    
+                    // ✅ Wait for 1 second, then reload the page
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000);
+                } else {
+                    alert("❌ Error: " + (data.error || "Something went wrong!"));
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("❌ Failed to submit issue. Please try again.");
+            });
+        });
+
+        function getCSRFToken() {
+            return document.querySelector("[name=csrfmiddlewaretoken]").value;
+        }
+    </script>
+</body>
+</html>

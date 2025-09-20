@@ -1,0 +1,72 @@
+id,description,location_name,latitude,longitude,created_at,user_id,Repeated_Reports,Severity_Score,Location_Weight,Priority_Score
+664,traffic lights are broken,"Netaji Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.310656,78.423447,2025-04-18 15:40:17.322668+00:00,10,4,2,1.0,2.5
+660,Illegal Garbage Dumping,"Netaji Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.310656,78.423447,2025-04-18 15:26:02.633608+00:00,1,4,2,1.0,2.5
+662,Street Flooding,"Netaji Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.310656,78.423447,2025-04-18 15:29:06.921339+00:00,1,4,2,1.0,2.5
+661,Broken Streetlights,"Netaji Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.310656,78.423447,2025-04-18 15:27:08.242253+00:00,1,4,2,1.0,2.5
+643,Broken Streetlights,"Royal Stairs, Bada Bazaar, Ward 66 Langar Houz, Greater Hyderabad Municipal Corporation Central Zone, Hyderabad, Golconda mandal, Hyderabad, Telangana, 500048, India",17.3768704,78.4007168,2025-04-06 17:56:35.493453+00:00,1,2,2,1.0,1.9
+644,There is a severe drainage overflow causing flooding.,"Sector 9, Road A",28.61,77.23,2025-04-06 18:08:17.321979+00:00,1,2,2,1.0,1.9
+646,Huge fire outbreak near residential area. Urgent help needed!,"Block A, Central Zone",28.61,77.23,2025-04-06 18:21:05.227433+00:00,1,2,2,1.0,1.9
+648,"Massive fire spreading rapidly in residential buildings, urgent help needed!","Royal Stairs, Bada Bazaar, Ward 66 Langar Houz, Greater Hyderabad Municipal Corporation Central Zone, Hyderabad, Golconda mandal, Hyderabad, Telangana, 500048, India",17.3768704,78.4007168,2025-04-06 18:31:26.118421+00:00,11,2,2,1.0,1.9
+563,Large pothole causing accidents near school zone,"Main Road, Sector 15",28.6139,77.209,2025-03-23 16:57:13.173848+00:00,3,1,2,1.5,1.65
+579,Defective pedestrian crossing signals,School Road,28.6184,77.2056,2025-03-31 16:57:13.192895+00:00,3,1,2,1.5,1.65
+566,Broken traffic signal causing traffic congestion,Junction near Mall,28.6206,77.2322,2025-03-21 16:57:13.183364+00:00,3,1,2,1.5,1.65
+597,Illegal parking blocking emergency vehicle access,Hospital Road,28.6129,77.1986,2025-03-30 16:57:13.210328+00:00,3,1,2,1.5,1.65
+565,"Garbage overflowing for 3 days, foul smell in the area",Market Street,28.6353,77.225,2025-04-02 16:57:13.183364+00:00,3,1,2,1.5,1.65
+671,Stray Animals,"Hasan Nagar, Ward 66 Langar Houz, Greater Hyderabad Municipal Corporation Central Zone, Hyderabad, Golconda mandal, Hyderabad, Telangana, 500048, India",17.372306307185017,78.42186927795412,2025-04-19 06:15:04.900423+00:00,1,1,2,1.0,1.6
+668,potholes on the road increasing the accidents,"Telangana NGOs Colony, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.310667333582806,78.44218969345094,2025-04-18 19:10:59.319917+00:00,3,1,2,1.0,1.6
+666,Illegal Garbage Dumping,"Katedan Industrial Area, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.31307388212045,78.43264102935792,2025-04-18 15:54:30.291046+00:00,14,1,2,1.0,1.6
+571,Sewage water overflowing onto main road,XYZ Nagar,28.5901,77.1804,2025-03-12 16:57:13.186427+00:00,3,1,2,1.0,1.6
+651,There’s a severe gas leakage close to Central Park Apartments. The odor is overwhelming and it poses a serious explosion hazard. Authorities must act fast,"Netaji Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.310589580470293,78.4238160745008,2025-04-06 18:40:45.646101+00:00,4,1,2,1.0,1.6
+562,Illegal parking blocking emergency vehicle access,"Netaji Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.31059584316929,78.42350715683072,2025-04-06 16:49:41.040713+00:00,1,1,2,1.0,1.6
+659,Fire Hazards,"Katedan Industrial Area, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.31047681604871,78.42619299888612,2025-04-17 14:23:42.176995+00:00,15,1,2,1.0,1.6
+592,Flooded subway station entrance after heavy rain,Central Station,28.6135,77.2162,2025-03-27 16:57:13.207316+00:00,3,1,2,1.0,1.6
+665,Illegal Garbage Dumping,"Mailardevpally, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.320161724161046,78.44710350036623,2025-04-18 15:48:11.705120+00:00,1,1,2,1.0,1.6
+647,Fallen Tree,"Netaji Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.3106172,78.4239384,2025-04-06 18:27:09.842831+00:00,4,1,2,1.0,1.6
+575,Frequent power outages affecting businesses,City Square,28.6405,77.1998,2025-03-08 16:57:13.190857+00:00,3,1,2,1.0,1.6
+645,"Massive fire near residential area, spreading quickly. Immediate action required!","Sector 12, Industrial Area",28.612,77.234,2025-04-06 18:09:57.081913+00:00,1,1,2,1.0,1.6
+590,Deep potholes on highways leading to vehicle damage,Highway 9,28.6452,77.2153,2025-03-31 16:57:13.207316+00:00,3,1,2,1.0,1.6
+654,there are more potholes in our area,"Netaji Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.31073010317437,78.42343748203912,2025-04-15 13:09:50.495464+00:00,1,1,2,1.0,1.6
+598,Bicycle lanes blocked by parked cars,Elm Street,28.6093,77.2101,2025-03-23 16:57:13.210328+00:00,3,1,2,1.0,1.6
+600,Water supply disruption in multiple residential areas,Suburban Area,28.6349,77.2003,2025-03-09 16:57:13.211481+00:00,3,1,2,1.0,1.6
+650,Major gas leak reported near the central park residential complex. Strong smell in the area; risk of explosion. Immediate response needed,"Netaji Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.310097921465157,78.42411648191047,2025-04-06 18:39:41.289705+00:00,11,1,2,1.0,1.6
+595,Uncollected garbage leading to rodent infestation,Residential Block C,28.6056,77.2038,2025-03-30 16:57:13.208320+00:00,3,1,2,1.0,1.6
+586,"Highway barriers missing, increasing accident risk",Expressway 22,28.651,77.1772,2025-04-05 16:57:13.201707+00:00,3,1,2,1.0,1.6
+589,Heavy truck traffic in residential areas,Oakridge Avenue,28.6243,77.2099,2025-03-07 16:57:13.206311+00:00,3,1,2,1.0,1.6
+593,Leaking gas pipeline posing explosion risk,Industrial Zone,28.6598,77.2254,2025-04-03 16:57:13.208320+00:00,3,1,2,1.0,1.6
+570,Illegal dumping of waste in residential area,Sector 8,28.6089,77.2123,2025-03-24 16:57:13.185405+00:00,3,1,2,1.0,1.6
+568,Open manhole posing danger to pedestrians,Near Railway Station,28.6222,77.2022,2025-03-13 16:57:13.184387+00:00,3,1,2,1.0,1.6
+573,Collapsed footpath creating hazard for pedestrians,Downtown Street,28.6265,77.2032,2025-04-03 16:57:13.188475+00:00,3,1,2,1.0,1.6
+594,Vandalized bus stop shelters leaving commuters stranded,Main Bus Terminal,28.6171,77.2106,2025-04-05 16:57:13.208320+00:00,3,1,2,1.0,1.6
+580,Overgrown vegetation obstructing sidewalks,Greenway Boulevard,28.6291,77.2114,2025-04-04 16:57:13.192895+00:00,3,1,2,1.0,1.6
+601,Fallen electric pole blocking main road,Sunset Boulevard,28.6187,77.2178,2025-03-23 16:57:13.211481+00:00,3,1,2,1.0,1.6
+670,Stray Animals,"Greenlands, Bairagiguda, Gandipet mandal, Ranga Reddy, Telangana, 500008, India",17.377231410438668,78.3555006980896,2025-04-19 05:56:57.076598+00:00,1,1,2,1.0,1.6
+669,Stray Animals,"Outer Ring Road, Narsingi, Gandipet mandal, Ranga Reddy, Telangana, 500075, India",17.39589645130897,78.35011482238771,2025-04-19 05:51:17.868966+00:00,11,1,2,1.0,1.6
+653,"Loud explosions heard near the industrial area, people are fleeing in panic","Netaji Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.3106063,78.423938,2025-04-08 19:19:20.306081+00:00,10,1,2,1.0,1.6
+583,Abandoned buildings attracting illegal activities,Old Town,28.6324,77.1849,2025-03-19 16:57:13.198089+00:00,3,1,2,1.0,1.6
+567,Water leakage from underground pipes leading to water wastage,ABC Colony,28.6545,77.1951,2025-04-04 16:57:13.184387+00:00,3,1,2,1.0,1.6
+656,Fallen Tree on the road,"Sri Rama Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.307012451612554,78.42641050207023,2025-04-15 13:31:11.851001+00:00,10,1,2,1.0,1.6
+574,Tree branches obstructing road visibility,Maple Avenue,28.6112,77.2203,2025-03-16 16:57:13.189495+00:00,3,1,2,1.0,1.6
+576,Improper drainage causing road flooding,Palm Street,28.6214,77.1756,2025-03-11 16:57:13.190857+00:00,3,1,2,1.0,1.6
+657,Street Flooding,"Netaji Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.313789289246028,78.4247055934975,2025-04-15 16:54:28.454810+00:00,14,1,2,1.0,1.6
+655,Fallen Tree on the road,"Sri Rama Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.30746314664764,78.4261530100048,2025-04-15 13:30:17.465062+00:00,9,1,2,1.0,1.6
+585,Lack of proper street signage causing confusion,West End Avenue,28.6382,77.2028,2025-03-07 16:57:13.200696+00:00,3,1,2,1.0,1.6
+596,Damaged pedestrian bridge making crossings unsafe,River Walk,28.6208,77.2157,2025-03-09 16:57:13.209325+00:00,3,1,2,1.0,1.6
+602,Traffic congestion due to poor road infrastructure planning,City Expressway,28.6262,77.2225,2025-03-07 16:57:13.212496+00:00,3,1,2,1.0,1.6
+658,accident,"Katedan Industrial Area, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.30796063316983,78.4261178970337,2025-04-15 18:16:17.511753+00:00,1,1,2,1.0,1.6
+652,"Explosion sounds reported near industrial zone, people evacuating","Netaji Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.310827843610788,78.42441688932013,2025-04-08 19:16:13.708613+00:00,9,1,2,1.0,1.6
+663,Fallen Tree on the road,"Netaji Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.310697385923156,78.42351042842569,2025-04-18 15:29:36.629527+00:00,1,1,2,1.0,1.6
+564,"Streetlights not working, making area unsafe at night","Green Park, Lane 4",28.5675,77.2231,2025-03-17 16:57:13.182183+00:00,3,1,2,1.0,1.6
+572,Traffic congestion due to unauthorized street vendors,Bazaar Road,28.5789,77.1675,2025-03-30 16:57:13.186427+00:00,3,1,2,1.0,1.6
+582,Street flooding due to blocked storm drains,Oakwood Street,28.6127,77.2275,2025-04-05 16:57:13.194932+00:00,3,1,2,1.0,1.6
+599,Fire emergency in a commercial building,Business District,28.6217,77.229,2025-03-28 16:57:13.211481+00:00,3,1,2,1.0,1.6
+649,"Massive fire spreading rapidly in residential buildings, urgent help needed!","Netaji Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.3106001,78.423961,2025-04-06 18:33:34.028793+00:00,4,1,2,1.0,1.6
+581,Inoperative escalators at metro stations,Metro Station Central,28.6201,77.2237,2025-03-31 16:57:13.192895+00:00,3,1,2,1.0,1.6
+569,Fire hazard due to exposed electrical wires,Apartment Complex Block A,28.61,77.2,2025-03-18 16:57:13.185405+00:00,3,1,2,1.0,1.6
+578,Unhygienic conditions in public market area,Central Bazaar,28.6319,77.1982,2025-03-12 16:57:13.191875+00:00,3,1,1,1.0,0.9999999999999999
+577,Illegal construction blocking public pathways,Sector 12,28.6058,77.2145,2025-03-15 16:57:13.191875+00:00,3,1,1,1.0,0.9999999999999999
+672,Noise Pollution in our area,"Radha Krishna Nagar, Ward 61 Attapur, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500048, India",17.366844765730285,78.4261178970337,2025-04-19 06:16:33.477484+00:00,1,1,1,1.0,0.9999999999999999
+584,Excessive noise pollution from nightclubs,Entertainment District,28.6007,77.1923,2025-03-11 16:57:13.199422+00:00,3,1,1,1.0,0.9999999999999999
+667,Noise pollution from overnight construction work,"Netaji Nagar, Ward 59 Mailardevpally, Greater Hyderabad Municipal Corporation South Zone, Hyderabad, Rajendranagar mandal, Ranga Reddy, Telangana, 500077, India",17.310688988779326,78.42343777813669,2025-04-18 15:56:24.785496+00:00,1,1,0,1.0,0.4
+587,Public park benches broken and unusable,Sunset Park,28.6192,77.2187,2025-03-16 16:57:13.203961+00:00,3,1,0,1.0,0.4
+588,Noise pollution from overnight construction work,Downtown Core,28.6015,77.2045,2025-03-14 16:57:13.205204+00:00,3,1,0,1.0,0.4
+591,Lack of wheelchair ramps in public buildings,City Hall,28.6295,77.1961,2025-03-22 16:57:13.207316+00:00,3,1,0,1.0,0.4

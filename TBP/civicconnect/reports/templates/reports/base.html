@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Civic Connect{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+   
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #800080, #a020f0);
+            color: white;
+            text-align: center;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1em;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        .btn {
+            background: #ff9800;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+            display: inline-block;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            background: #e68900;
+        }
+
+        .hero {
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px 20px 0 20px;
+            border-radius: 10px;
+        }
+
+        .hero h2 {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.3em;
+        }
+
+        .hero p {
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        .badges {
+            padding: 40px 20px;
+            margin-top: 0;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .badge {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            color: black;
+            width: 150px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .badge img {
+            width: 80px;
+        }
+
+        .badge:hover {
+            transform: scale(1.1);
+        }
+
+        .features {
+            padding: 40px 20px;
+        }
+
+        .feature-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            transition: 0.3s;
+        }
+
+        .feature:hover {
+            transform: scale(1.1);
+        }
+
+        footer {
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🌍 Civic Connect</h1>
+        <nav>
+            <button class="btn" onclick="redirectToLogin()">Citizen Login</button>
+            <button class="btn" onclick="redirectToAuthorityLogin()">Authority Login</button>
+            <button class="btn" onclick="redirectToOfficerLogin()">Worker Login</button>
+            
+            
+
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Empowering Citizens, Improving Communities</h2>
+            <p>Report issues, track progress, and make your city better.</p>
+        </section>
+
+        <section class="badges">
+            <h2>🏆 Badges</h2>
+            <div class="badge-container">
+                <div class="badge">
+                    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Badge 1">
+                    <p>Active Reporter</p>
+                </div>
+                <div class="badge">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Badge 2">
+                    <p>Community Helper</p>
+                </div>
+                <div class="badge">
+                    <img src="https://cdn-icons-png.flaticon.com/512/992/992651.png" alt="Badge 3">
+                    <p>Top Contributor</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Why Use Civic Connect?</h2>
+            <div class="feature-list">
+                <div class="feature">
+                    <h3>📸 Report Issues</h3>
+                    <p>Snap a photo and submit your complaint in seconds.</p>
+                </div>
+                <div class="feature">
+                    <h3>📊 Track Progress</h3>
+                    <p>Get real-time updates on issue resolutions.</p>
+                </div>
+                <div class="feature">
+                    <h3>🎯 Earn Badges</h3>
+                    <p>Stay active and earn recognition for your contributions.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Civic Connect | Connecting Communities</p>
+    </footer>
+
+    <script>
+        function redirectToLogin() {
+            window.location.href = "{% url 'citizen_login' %}";
+        }
+
+        function redirectToAuthorityLogin() {
+            window.location.href = "{% url 'authority_login' %}";
+        }
+        function redirectToOfficerLogin() {
+            window.location.href = "{% url 'officer_login' %}";
+        }
+    </script>
+</body>
+</html>

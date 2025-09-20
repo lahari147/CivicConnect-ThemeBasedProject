@@ -1,0 +1,12 @@
+
+
+{% block content %}
+<div class="issue-detail-container">
+    <h2>Issue Details</h2>
+    <p><strong>ID:</strong> {{ issue.id }}</p>
+    <p><strong>Description:</strong> {{ issue.description }}</p>
+    <p><strong>Severity:</strong> {{ issue.severity }}</p>
+    <p><strong>Status:</strong> {{ issue.status }}</p>
+    <a href="{% url 'officer_dashboard' %}">Back to Dashboard</a>
+</div>
+{% endblock %}

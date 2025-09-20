@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prioritized Issues</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #0F2027, #203A43, #2C5364);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.3);
+        }
+        
+        th, td {
+            padding: 16px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        th {
+            background: #142850;
+            color: white;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+        
+        tr:nth-child(even) {
+            background: #dde1e7;
+        }
+        
+        tr:hover {
+            background: #a2d2ff;
+            transform: scale(1.02);
+            transition: 0.3s ease-in-out;
+        }
+
+        .high-priority {
+            background: #B22222 !important;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .medium-priority {
+            background: #FF8C00 !important;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .low-priority {
+            background: #1E3A5F !important;
+            color: white;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 32px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚨 High-Priority Issues 🚨</h1>
+    <table>
+        <tr>
+            <th>Description</th>
+            <th>Location</th>
+            <th>Priority Score</th>
+            <th>Reported At</th>
+        </tr>
+        {% for issue in issues %}
+        <tr class="{% if issue.priority_score >= 80 %}high-priority{% elif issue.priority_score >= 50 %}medium-priority{% else %}low-priority{% endif %}">
+            <td>{{ issue.description }}</td>
+            <td>{{ issue.location_name }}</td>
+            <td>{{ issue.priority_score }}</td>
+            <td>{{ issue.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

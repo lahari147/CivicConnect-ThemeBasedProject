@@ -1,0 +1,222 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worker Dashboard - CivicConnect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 25px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background: #c82333;
+            transform: scale(1.05);
+        }
+
+        .dashboard-container {
+            background: white;
+            color: black;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .messages {
+            color: red;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background: #1e3c72;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+
+        tr:hover {
+            background: #ddd;
+        }
+
+        img {
+            border-radius: 5px;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            color: white;
+            font-size: 14px;
+        }
+
+        .btn-update {
+            background: #2196F3;
+        }
+
+        .btn-cancel {
+            background: #f44336;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .update-form {
+            display: none;
+            background: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Worker Dashboard</h1>
+        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+    </header>
+
+    <div class="dashboard-container">
+        <h2>Officer Dashboard</h2>
+        <p>Welcome, Worker! Here is an overview of the highest-priority reports assigned to you.</p>
+
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Issue</th>
+                    <th>Severity</th>
+                    <th>Status</th>
+                    <th>Progress</th>
+                    <th>Work Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for issue in issues %}
+                <tr>
+                    <td>{{ issue.id }}</td>
+                    <td>{{ issue.description }}</td>
+                    <td>{{ issue.severity }}</td>
+                    <td>{{ issue.status }}</td>
+                    <td>{{ issue.progress_percentage }}%</td>
+                    <td>
+                        {% if issue.work_images %}
+                            <img src="{{ issue.work_images.url }}" width="100">
+                        {% else %}
+                            No Image Uploaded
+                        {% endif %}
+                    </td>
+                    <td>
+                        <button class="btn btn-update" onclick="showUpdateForm({{ issue.id }})">Update</button>
+                    </td>
+                </tr>
+                <tr id="update-form-{{ issue.id }}" class="update-form">
+                    <td colspan="7">
+                        <form method="post" action="{% url 'update_progress' issue.id %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <label>Progress (0-100%):</label>
+                            <input type="number" name="progress_percentage" min="0" max="100" value="{{ issue.progress_percentage }}" required>
+                            
+                            <label>Status:</label>
+                            <select name="status">
+                                <option value="Pending" {% if issue.status == "Pending" %}selected{% endif %}>Pending</option>
+                                <option value="In Progress" {% if issue.status == "In Progress" %}selected{% endif %}>In Progress</option>
+                                <option value="Solved" {% if issue.status == "Solved" %}selected{% endif %}>Solved</option>
+                            </select>
+
+                            <label>Upload Work Image:</label>
+                            <input type="file" name="work_image">
+                            
+                            <button type="submit" class="btn btn-update">Submit</button>
+                            <button type="button" class="btn btn-cancel" onclick="hideUpdateForm({{ issue.id }})">Cancel</button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7">No high-priority issues assigned yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+    function showUpdateForm(issueId) {
+        document.getElementById("update-form-" + issueId).style.display = "table-row";
+    }
+    function hideUpdateForm(issueId) {
+        document.getElementById("update-form-" + issueId).style.display = "none";
+    }
+    </script>
+</body>
+</html>

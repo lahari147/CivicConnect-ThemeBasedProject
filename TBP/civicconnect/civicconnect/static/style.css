@@ -1,0 +1,85 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #800080, #a020f0); /* Purple background */
+    color: white;
+    text-align: center;
+}
+
+/* Header */
+header {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 1em;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+.btn {
+    background: #ff9800;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 5px;
+    display: inline-block;
+    transition: 0.3s;
+    cursor: pointer;
+    border: none;
+}
+
+.btn:hover {
+    background: #e68900;
+}
+
+/* Hero Section */
+.hero {
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 20px 20px 0 20px;
+    border-radius: 10px;
+}
+
+.hero h2 {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.3em;
+}
+
+.hero p {
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+}
+.messages {
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.success {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.error {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
